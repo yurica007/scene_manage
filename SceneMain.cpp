@@ -3,8 +3,8 @@
 
 void SceneMain::init()
 {
-	m_textPosY = 0;
-	m_textVecY = 4;
+	m_textPosX = 0;
+	m_textVecX = 4;
 
 	m_isEnd = false;
 }
@@ -12,16 +12,16 @@ void SceneMain::init()
 void SceneMain::update()
 {
 	// •¶š‚ÌˆÚ“®
-	m_textPosY += m_textVecY;
-	if (m_textPosY < 0)
+	m_textPosX += m_textVecX;
+	if (m_textPosX < 0)
 	{
-		m_textPosY = 0;
-		m_textVecY = 4;
+		m_textPosX = 0;
+		m_textVecX = 4;
 	}
-	if (m_textPosY > 200)
+	if (m_textPosX > 300)
 	{
-		m_textPosY = 200;
-		m_textVecY = -4;
+		m_textPosX = 300;
+		m_textVecX = -4;
 	}
 
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
@@ -33,5 +33,5 @@ void SceneMain::update()
 
 void SceneMain::draw()
 {
-	DrawString(0, m_textPosY,"ƒƒCƒ“‰æ–Ê",GetColor(255,255,255));
+	DrawString(m_textPosX, 0,"ƒƒCƒ“‰æ–Ê",GetColor(255,255,255));
 }
