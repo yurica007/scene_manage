@@ -6,6 +6,7 @@
 class SceneManager
 {
 public:
+	// ƒV[ƒ“‚Ìí—Ş’è‹`
 	typedef enum SceneKind
 	{
 		kSceneKindTitle,
@@ -13,6 +14,7 @@ public:
 
 		kSceneKindNum
 	}SceneKind;
+
 public:
 	SceneManager();
 	virtual ~SceneManager();
