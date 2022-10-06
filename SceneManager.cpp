@@ -50,17 +50,18 @@ void SceneManager::update()
 	m_pScene->update();
 	if (m_pScene->isEnd())
 	{
+		// シーンの終了処理
+		m_pScene->end();
+		delete m_pScene;
+
+		// 次のシーンと生成・初期化
 		switch (m_kind)
 		{
 		case SceneManager::kSceneKindTitle:
-			m_title.end();
-			m_main.init();
-			m_kind = kSceneKindMain;
+			init(kSceneKindMain);
 			break;
 		case SceneManager::kSceneKindMain:
-			m_main.end();
-			m_title.init();
-			m_kind = kSceneKindTitle;
+			init(kSceneKindTitle);
 			break;
 		case SceneManager::kSceneKindNum:
 		default:
@@ -72,17 +73,8 @@ void SceneManager::update()
 
 void SceneManager::draw()
 {
-	switch (m_kind)
-	{
-	case SceneManager::kSceneKindTitle:
-		m_title.draw();
-		break;
-	case SceneManager::kSceneKindMain:
-		m_main.draw();
-		break;
-	case SceneManager::kSceneKindNum:
-	default:
-		assert(false);
-		break;
-	}
+	assert(m_pScene);
+	if (!m_pScene) return;
+
+	m_pScene->draw();
 }
